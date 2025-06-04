@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Chini 🎉</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ffd6e8, #ffe6f0);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .envelope {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff0f6;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 2;
+      cursor: pointer;
+      animation: pulse 1.5s infinite;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .envelope:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #ffaad4; }
+      50% { box-shadow: 0 0 25px #ffaad4; }
+      100% { box-shadow: 0 0 10px #ffaad4; }
+    }
+
+    .card, .section {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: 350px;
+      padding: 30px;
+      text-align: center;
+      z-index: 3;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    h1, h2 {
+      color: #ff4f93;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #5f0034;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px auto;
+      background: #ffaad4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff75b5;
+    }
+
+    .music {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #ff9fcf;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Envelope -->
+  <div class="envelope" onclick="openCard()">
+    📩 Tap to Open Your Birthday Surprise 💌
+  </div>
+
+  <!-- Main Menu Card -->
+  <div class="card" id="mainMenu">
+    <h1>Happy Birthday Chini! 🎂💖</h1>
+    <h2>My Favourite Girl 🌸</h2>
+    <button class="btn" onclick="showSection('msg')">💬 See My Message</button>
+    <button class="btn" onclick="showSection('img')">📸 Open Surprise Pic</button>
+    <button class="btn" onclick="showSection('game')">🎮 Play a Lil Game</button>
+    <button class="btn" onclick="goBack()">🔙 Close All</button>
+  </div>
+
+  <!-- Message Section -->
+  <div class="section" id="msg">
+    <h2>💌 From Me to You</h2>
+    <p>
+       I honestly don't know how to put it in words, but you make life better just by being in it. <br><br>
+      You're the softest soul I know.<br>
+      I hope this day is filled with everything you love, and the year ahead brings you nothing but happiness, laughter, and all the magic you deserve.<br><br>
+    </p>
+    <button class="btn" onclick="goBack()">🔙 Back</button>
+  </div>
+
+  <!-- Image Section -->
+  <div class="section" id="img">
+    <h2>📸 Snapshot</h2>
+    <img src="pinkflowers.jpg" alt="Cute Flower" />
+    <p>🌷💞</p>
+    <button class="btn" onclick="goBack()">🔙 Back</button>
+  </div>
+
+  <!-- Mini Game -->
+  <div class="section" id="game">
+    <h2>🎮 Catch Me If You Can!</h2>
+    <p>Score: <span id="score">0</span> 🌟<br>Tap the button fast!</p>
+    <button class="btn" onclick="increaseScore()">✨ Tap Me Fast!</button>
+    <button class="btn" onclick="goBack()">🔙 Back</button>
+  </div>
+
+  <!-- Music Button -->
+  <button class="music" id="musicBtn" onclick="document.getElementById('bgMusic').play()">🎶 Music Playing</button>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Script -->
+  <script>
+    let score = 0;
+
+    function openCard() {
+      document.querySelector('.envelope').style.display = 'none';
+      document.getElementById('mainMenu').style.display = 'block';
+      document.getElementById('musicBtn').style.display = 'block';
+      document.getElementById('bgMusic').play();
+    }
+
+    function showSection(id) {
+      document.getElementById('mainMenu').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function goBack() {
+      document.querySelectorAll('.section').forEach(el => el.style.display = 'none');
+      document.getElementById('mainMenu').style.display = 'block';
+    }
+
+    function increaseScore() {
+      score++;
+      document.getElementById('score').innerText = score;
+    }
+  </script>
+
+</body>
+</html>
